@@ -1948,7 +1948,7 @@ int smi_modeset_init(struct smi_device *cdev)
 	}
 	cdev->dev->mode_config.cursor_width = CURSOR_WIDTH;
 	cdev->dev->mode_config.cursor_height = CURSOR_HEIGHT;
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 2, 0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 1, 0)
 	cdev->dev->mode_config.fb_base = cdev->vram_base;
 #endif
 	cdev->dev->mode_config.preferred_depth = smi_bpp;

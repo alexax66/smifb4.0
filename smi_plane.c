@@ -284,7 +284,7 @@ static const struct drm_plane_helper_funcs smi_cursor_helper_funcs = {
 
 
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 2, 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
 static void smi_handle_damage(struct smi_plane *smi_plane, struct iosys_map *src,
 			      struct drm_framebuffer *fb,
 			      struct drm_rect *clip)
@@ -300,7 +300,7 @@ static void smi_handle_damage(struct smi_plane *smi_plane,
 	else
 		back_buffer = smi_plane->vaddr;
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 2, 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
 	struct iosys_map dst;
 
 	iosys_map_set_vaddr_iomem(&dst, back_buffer);
@@ -368,7 +368,7 @@ static void smi_primary_plane_atomic_update(struct drm_plane *plane, struct drm_
     struct drm_plane_state *plane_state = drm_atomic_get_new_plane_state(state, plane);
 	struct drm_framebuffer *fb = plane_state->fb;
     struct drm_plane_state *old_plane_state = drm_atomic_get_old_plane_state(state, plane);
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 2, 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
     struct drm_shadow_plane_state *shadow_plane_state = to_drm_shadow_plane_state(plane_state);
 #endif
 #else
@@ -452,7 +452,7 @@ static void smi_primary_plane_atomic_update(struct drm_plane *plane, struct drm_
 	
 	drm_atomic_helper_damage_iter_init(&iter, old_plane_state, plane_state);
 	drm_atomic_for_each_plane_damage(&iter, &damage) {
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 2, 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0)
 		smi_handle_damage(smi_plane, shadow_plane_state->data, fb, &damage);
 #else
 		smi_handle_damage(smi_plane, fb, &damage);		

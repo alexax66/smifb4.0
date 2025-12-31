@@ -41,9 +41,16 @@
 #define LINUX_VERSION_CODE 0x060600//6.6.0
 #elif RHEL_MINOR == 5
 #define LINUX_VERSION_CODE 0x060600//6.6.0
+#elif RHEL_MINOR==6
+#define LINUX_VERSION_CODE 0x060c00//6.12.0
 #endif
 #endif//RHEL_MAJOR==9
 
+#if RHEL_MAJOR==10
+#if RHEL_MINOR==0
+#define LINUX_VERSION_CODE 0x060c00//6.12.0 
+#endif
+#endif//RHEL_MAJOR==10
 #endif//RHEL_MAJOR
 
 #endif

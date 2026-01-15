@@ -115,6 +115,7 @@ int smi_driver_load(struct drm_device *dev, unsigned long flags)
 		EP_HDMI_Init(1);
 		EP_HDMI_Set_Video_Timing(1,1);
 #endif
+		smi_pwm_init(dev);	
 
 	}
 	else if(cdev->specId == SPC_SM770){
@@ -225,6 +226,11 @@ void smi_driver_unload(struct drm_device *dev)
 		if(audio_en)
 			smi_audio_remove(dev);
     }
+#endif
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 14, 0)
+	if(cdev->specId == SPC_SM768){
+		smi_pwm_remove(dev);
+	}
 #endif
 
 	kvfree(cdev->regsave);

@@ -101,7 +101,6 @@ extern int hwi2c_en;
 extern int swcur_en;
 extern int edid_mode;
 extern int lcd_scale;
-extern int pwm_ctrl;
 extern int use_vblank;
 extern int use_doublebuffer;
 
@@ -255,6 +254,10 @@ void smi_audio_remove(struct drm_device *dev);
 void smi_audio_suspend(struct smi_device *sdev);
 void smi_audio_resume(struct smi_device *sdev);
 
+int smi_pwm_init(struct drm_device *ddev);
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 14, 0)
+void smi_pwm_remove(struct drm_device *ddev);
+#endif
 #ifndef DRM_IRQ_ARGS
 #define DRM_IRQ_ARGS int irq, void *arg
 #endif

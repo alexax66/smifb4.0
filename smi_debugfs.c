@@ -88,7 +88,7 @@ static const struct file_operations reg_fops = {
 	.read  = reg_read,
 	.write = reg_write,
 };
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 8, 0)
      void smi_debugfs_init(struct drm_minor *minor)
 #else
      int smi_debugfs_init(struct drm_minor *minor)
@@ -148,7 +148,7 @@ static const struct file_operations reg_fops = {
 
 
 DEBUGFS_FAIL:
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 6, 0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 8, 0)
     return 0;
 #else
 	return;
